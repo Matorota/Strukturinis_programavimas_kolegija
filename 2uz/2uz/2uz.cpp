@@ -1,18 +1,17 @@
-/*
+ï»¿/*
 Likusios Uzd
-1.Pridëti pasirinkimà, kurio metu vartotojas ðifravimui naudos tik ASCII koduotæ vietoj masyve saugomø elementø.
-Tam bus reikalinga patobulintas ðifravimo/deðifravimo metodas.
+1.PridÄ—ti pasirinkimÄ…, kurio metu vartotojas Å¡ifravimui naudos tik ASCII koduotÄ™ vietoj masyve saugomÅ³ elementÅ³.
+Tam bus reikalinga patobulintas Å¡ifravimo/deÅ¡ifravimo metodas.
 2. Localizacija sutvarkyti
 */
 #include <iostream>
 #include <string>
-//#include <fcntl.h>
-//#include <io.h>
 
-char abc[32] = { 'A','À','B','C','È','D','E','Æ','Ë','F','G','H', 'I','Á','Y','J','K','L','M','N','O','P','R','S','Ð','T','U','Ø','Û','V','Z','Þ' };
+
+//char abc[26] = { 'A','B','C','D','E','F','G','H', 'I','Y','J','K','L','M','N','O','P','R','S','T','U','V','Z' }; // PRIRASYTI
+char abc[32] = { 'A','Ä„','B','C','ÄŒ','D','E','Ä˜','Ä–','F','G','H', 'I','Ä®','Y','J','K','L','M','N','O','P','R','S','Å ','T','U','Å²','Åª','V','Z','Å½' };
 
 using namespace std;
-
 
 int findIndex(char c, bool useASCII);
 string Encrypt(string text, string key, bool useASCII);
@@ -24,57 +23,73 @@ int main() {
     setlocale(LC_ALL, "Lithuanian"); // neveikia
     bool useASCII;
     string text;
-    cout << "Norite naudoti ASCII koduotæ? (1 - taip, 0 - ne): \n";
+    cout << "Norite naudoti ASCII koduotÃ¦? (1 - taip, 0 - ne): \n";
     cin >> useASCII;
     cout << "Parasykit zody: \n";
     cin >> text;
-    string key = "KEY";
-    
+    string key;
+    cout << "Parasykit rakta: \n";
+    cin >> key;
     string encrypted = Encrypt(text, key, useASCII);
     string decrypted = Decrypt(encrypted, key, useASCII);
-
     cout << "Pradinis tekstas: " << text << endl;
-    cout << "Uþðifruotas tekstas: " << encrypted << endl;
-    cout << "Deðifruotas tekstas: " << decrypted << endl;
+    cout << "UÅ¾Å¡ifruotas tekstas: " << encrypted << endl;
+    cout << "DeÅ¡ifruotas tekstas: " << decrypted << endl;
 
     return 0;
 }
 
 int findIndex(char c, bool useASCII) {
-    //cout << useASCII;
-    if (useASCII) return(int)c;
+    if (useASCII) return (int)c;
     for (int i = 0; i < 32; i++) {
         if (abc[i] == c) return i;
-
     }
     return -1;
 }
 
 string Encrypt(string text, string key, bool useASCII = false) {
-    int n = 32;
+    int n = useASCII ? 128 : 32;
     string encrypted = "";
     for (int i = 0, j = 0; i < text.length(); i++) {
-        int miIndex = findIndex(text[i], useASCII);
-        int kiIndex = findIndex(key[j % key.length()], useASCII);
+        char mi = text[i];
+        char ki = key[j % key.length()];
+
+        int miIndex = findIndex(mi, useASCII);
+        int kiIndex = findIndex(ki, useASCII);
 
         if (miIndex == -1 || kiIndex == -1) continue;
 
-        encrypted += abc[(miIndex + kiIndex) % n];
+        if (useASCII) {
+            encrypted += char((miIndex + kiIndex) % n);
+        }
+        else {
+            encrypted += abc[(miIndex + kiIndex) % n];
+        }
+
         j++;
     }
     return encrypted;
 }
 
-string Decrypt(string text, string key, bool useASCII) {
-    int n = 32;
+string Decrypt(string text, string key, bool useASCII = false) {
+    int n = useASCII ? 128 : 32;
     string decrypted = "";
     for (int i = 0, j = 0; i < text.length(); i++) {
-        int ciIndex = findIndex(text[i], useASCII);
-        int kiIndex = findIndex(key[j % key.length()], useASCII);
+        char ci = text[i];
+        char ki = key[j % key.length()];
+
+        int ciIndex = findIndex(ci, useASCII);
+        int kiIndex = findIndex(ki, useASCII);
 
         if (ciIndex == -1 || kiIndex == -1) continue;
 
-        decrypted += abc[(ciIndex - kiIndex + n) % n];
+        if (useASCII) {
+            decrypted += char((ciIndex - kiIndex + n) % n);
+        }
+        else {
+            decrypted += abc[(ciIndex - kiIndex + n) % n];
+        }
+
         j++;
     }
     return decrypted;
