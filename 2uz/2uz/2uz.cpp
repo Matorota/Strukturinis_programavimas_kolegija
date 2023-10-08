@@ -23,7 +23,7 @@ int main() {
     setlocale(LC_ALL, "Lithuanian"); // neveikia
     bool useASCII;
     string text;
-    cout << "Norite naudoti ASCII koduotæ? (1 - taip, 0 - ne): \n";
+    cout << "Norite naudoti ASCII? (1 - taip, 0 - ne): \n";
     cin >> useASCII;
     cout << "Parasykit zody: \n";
     cin >> text;
