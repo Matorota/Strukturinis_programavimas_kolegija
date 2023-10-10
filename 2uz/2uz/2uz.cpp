@@ -30,8 +30,8 @@ int main() {
     string encrypted = Encrypt(text, key, useASCII);
     string decrypted = Decrypt(encrypted, key, useASCII);
     cout << "Pradinis tekstas: " << text << endl;
-    cout << "Užšifruotas tekstas: " << encrypted << endl;
-    cout << "Dešifruotas tekstas: " << decrypted << endl;
+    cout << "Uzsifruotas tekstas: " << encrypted << endl;
+    cout << "Desifruotas tekstas: " << decrypted << endl;
     return 0;
 }
 
