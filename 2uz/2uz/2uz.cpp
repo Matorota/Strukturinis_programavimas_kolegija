@@ -1,9 +1,3 @@
-﻿/*
-Likusios Uzd
-1.Pridėti pasirinkimą, kurio metu vartotojas šifravimui naudos tik ASCII koduotę vietoj masyve saugomų elementų.
-Tam bus reikalinga patobulintas šifravimo/dešifravimo metodas.
-2. Localizacija sutvarkyti
-*/
 #include <iostream>
 #include <string>
 
@@ -30,8 +24,8 @@ int main() {
     string encrypted = Encrypt(text, key, useASCII);
     string decrypted = Decrypt(encrypted, key, useASCII);
     cout << "Pradinis tekstas: " << text << endl;
-    cout << "Uzsifruotas tekstas: " << encrypted << endl;
-    cout << "Desifruotas tekstas: " << decrypted << endl;
+    cout << "Užšifruotas tekstas: " << encrypted << endl;
+    cout << "Dešifruotas tekstas: " << decrypted << endl;
     return 0;
 }
 
@@ -44,11 +38,11 @@ int findIndex(char c) {
 
 string Encrypt(string text, string key, bool useASCII = false) {
     if (useASCII) {
-        stringstream ss;
+        string encrypted = "";
         for (char c : text) {
-            ss << int(c) << " ";
+            encrypted += to_string(int(c)) + " ";
         }
-        return ss.str();
+        return encrypted;
     }
     else {
         string encrypted = "";
@@ -70,11 +64,12 @@ string Encrypt(string text, string key, bool useASCII = false) {
 
 string Decrypt(string encrypted, string key, bool useASCII = false) {
     if (useASCII) {
-        stringstream ss(encrypted);
-        string decrypted;
-        int num;
-        while (ss >> num) {
-            decrypted += char(num);
+        string decrypted = "";
+        size_t pos = 0;
+        while ((pos = encrypted.find(" ")) != string::npos) {
+            int asciiValue = stoi(encrypted.substr(0, pos));
+            decrypted += char(asciiValue);
+            encrypted.erase(0, pos + 1);
         }
         return decrypted;
     }
