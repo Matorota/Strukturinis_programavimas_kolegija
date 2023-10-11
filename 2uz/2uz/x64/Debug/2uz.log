@@ -1,9 +1,2 @@
 ﻿  2uz.cpp
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,22): warning C4566: character represented by universal-character-name '\u0104' cannot be represented in the current code page (1252)
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,35): warning C4566: character represented by universal-character-name '\u010C' cannot be represented in the current code page (1252)
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,48): warning C4566: character represented by universal-character-name '\u0118' cannot be represented in the current code page (1252)
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,53): warning C4566: character represented by universal-character-name '\u0116' cannot be represented in the current code page (1252)
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,75): warning C4566: character represented by universal-character-name '\u012E' cannot be represented in the current code page (1252)
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,133): warning C4566: character represented by universal-character-name '\u0172' cannot be represented in the current code page (1252)
-C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\2uz\2uz.cpp(13,138): warning C4566: character represented by universal-character-name '\u016A' cannot be represented in the current code page (1252)
   2uz.vcxproj -> C:\Users\s054147\Desktop\Clonai\Strukturinis_programavimas_kolegija\2uz\x64\Debug\2uz.exe

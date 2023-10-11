@@ -1,92 +1,87 @@
 #include <iostream>
 #include <string>
 
-
-//char abc[32] = { 'A','Ą','B','C','Č','D','E','Ę','Ė','F','G','H', 'I','Į','Y','J','K','L','M','N','O','P','R','S','Š','T','U','Ų','Ū','V','Z','Ž' };
 char abc[26] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
 using namespace std;
 
-int findIndex(char c);
+int findIndex(char c, bool useASCII);
+char findCharacter(int index, bool useASCII);
 string Encrypt(string text, string key, bool useASCII);
-string Decrypt(string encrypted, string key, bool useASCII);
+string Decrypt(string text, string key, bool useASCII);
 
 int main() {
     bool useASCII;
-    string text, key;
+    string text;
     cout << "Norite naudoti ASCII? (1 - taip, 0 - ne): \n";
     cin >> useASCII;
-    cin.ignore();
     cout << "Parasykit zody: \n";
-    getline(cin, text);
+    cin >> text;
+    string key;
     cout << "Parasykit rakta: \n";
-    getline(cin, key);
+    cin >> key;
     string encrypted = Encrypt(text, key, useASCII);
     string decrypted = Decrypt(encrypted, key, useASCII);
     cout << "Pradinis tekstas: " << text << endl;
-    cout << "Užšifruotas tekstas: " << encrypted << endl;
-    cout << "Dešifruotas tekstas: " << decrypted << endl;
+    cout << "Uzsifruotas tekstas: " << encrypted << endl;
+    cout << "Desifruotas tekstas: " << decrypted << endl;
+
     return 0;
 }
 
-int findIndex(char c) {
-    for (int i = 0; i < 26; i++) {
-        if (abc[i] == c) return i;
+int findIndex(char c, bool useASCII) {
+    if (!useASCII) {
+        for (int i = 0; i < 26; i++) {
+            if (abc[i] == c) return i;
+        }
+        return -1;
     }
-    return -1;
+    else {
+        return (c >= 'A' && c <= 'Z') ? c - 'A' : -1;
+    }
+}
+
+char findCharacter(int index, bool useASCII) {
+    if (!useASCII) {
+        return (index >= 0 && index < 26) ? abc[index] : -1;
+    }
+    else {
+        return (index >= 0 && index < 26) ? 'A' + index : -1;
+    }
 }
 
 string Encrypt(string text, string key, bool useASCII = false) {
-    if (useASCII) {
-        string encrypted = "";
-        for (char c : text) {
-            encrypted += to_string(int(c)) + " ";
-        }
-        return encrypted;
+    int n = 26;  
+    string encrypted = "";
+    for (int i = 0, j = 0; i < text.length(); i++) {
+        char mi = text[i];
+        char ki = key[j % key.length()];
+
+        int miIndex = findIndex(mi, useASCII);
+        int kiIndex = findIndex(ki, useASCII);
+
+        if (miIndex == -1 || kiIndex == -1) continue;
+
+        encrypted += findCharacter((miIndex + kiIndex) % n, useASCII);
+        j++;
     }
-    else {
-        string encrypted = "";
-        for (int i = 0, j = 0; i < text.length(); i++) {
-            char mi = text[i];
-            char ki = key[j % key.length()];
-
-            int miIndex = findIndex(mi);
-            int kiIndex = findIndex(ki);
-
-            if (miIndex == -1 || kiIndex == -1) continue;
-            encrypted += abc[(miIndex + kiIndex) % 26];
-
-            j++;
-        }
-        return encrypted;
-    }
+    return encrypted;
 }
 
-string Decrypt(string encrypted, string key, bool useASCII = false) {
-    if (useASCII) {
-        string decrypted = "";
-        size_t pos = 0;
-        while ((pos = encrypted.find(" ")) != string::npos) {
-            int asciiValue = stoi(encrypted.substr(0, pos));
-            decrypted += char(asciiValue);
-            encrypted.erase(0, pos + 1);
-        }
-        return decrypted;
+string Decrypt(string text, string key, bool useASCII = false) {
+    int n = 26;
+    string decrypted = "";
+    for (int i = 0, j = 0; i < text.length(); i++) {
+        char ci = text[i];
+        char ki = key[j % key.length()];
+
+        int ciIndex = findIndex(ci, useASCII);
+        int kiIndex = findIndex(ki, useASCII);
+
+        if (ciIndex == -1 || kiIndex == -1) continue;
+
+        decrypted += findCharacter((ciIndex - kiIndex + n) % n, useASCII);
+        j++;
     }
-    else {
-        string decrypted = "";
-        for (int i = 0, j = 0; i < encrypted.length(); i++) {
-            char ci = encrypted[i];
-            char ki = key[j % key.length()];
-
-            int ciIndex = findIndex(ci);
-            int kiIndex = findIndex(ki);
-
-            if (ciIndex == -1 || kiIndex == -1) continue;
-            decrypted += abc[(ciIndex - kiIndex + 26) % 26];
-
-            j++;
-        }
-        return decrypted;
-    }
+    return decrypted;
 }
