@@ -1,0 +1,18 @@
+﻿  praktiko3.cpp
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(53,13): warning C4566: character represented by universal-character-name '\u012E' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(53,13): warning C4566: character represented by universal-character-name '\u0105' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(53,13): warning C4566: character represented by universal-character-name '\u012F' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(53,13): warning C4566: character represented by universal-character-name '\u010D' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(53,13): warning C4566: character represented by universal-character-name '\u0173' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(55,13): warning C4566: character represented by universal-character-name '\u012E' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(55,13): warning C4566: character represented by universal-character-name '\u0105' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(55,13): warning C4566: character represented by universal-character-name '\u012F' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(55,13): warning C4566: character represented by universal-character-name '\u010D' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(55,13): warning C4566: character represented by universal-character-name '\u0173' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(90,35): warning C4566: character represented by universal-character-name '\u0104' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(90,35): warning C4566: character represented by universal-character-name '\u0118' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(90,35): warning C4566: character represented by universal-character-name '\u0116' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(90,35): warning C4566: character represented by universal-character-name '\u012E' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(90,35): warning C4566: character represented by universal-character-name '\u0172' cannot be represented in the current code page (1252)
+C:\Users\s054147\Desktop\praktiko3\praktiko3\praktiko3.cpp(90,35): warning C4566: character represented by universal-character-name '\u016A' cannot be represented in the current code page (1252)
+  praktiko3.vcxproj -> C:\Users\s054147\Desktop\praktiko3\x64\Debug\praktiko3.exe
